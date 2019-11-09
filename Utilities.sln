@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Ribbanya.FSharpUtilities", "Source\Ribbanya.Utilities.fsproj", "{D07D82F8-E5A8-49EE-A7E9-45D1F36D204F}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Utilities.Tests", "Tests\Ribbanya.Utilities.Tests.fsproj", "{E0EB6824-A4A9-4D50-B3A2-789B2F092846}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpPortTests", "CSharpPortTests\CSharpPortTests.csproj", "{F3AFAA31-ED4A-4EFA-9BC9-84473306EAFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ribbanya.Utilities", "..\..\Csharp\Utilities\Source\Ribbanya.Utilities.csproj", "{21730836-F71C-44F1-9F86-634A078FB3DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ribbanya.Utilities.Tests", "..\..\Csharp\Utilities\Tests\Ribbanya.Utilities.Tests.csproj", "{4CFF0967-EB68-4322-B3FA-1FF33CFE7DE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0EB6824-A4A9-4D50-B3A2-789B2F092846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0EB6824-A4A9-4D50-B3A2-789B2F092846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3AFAA31-ED4A-4EFA-9BC9-84473306EAFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3AFAA31-ED4A-4EFA-9BC9-84473306EAFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07D82F8-E5A8-49EE-A7E9-45D1F36D204F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D07D82F8-E5A8-49EE-A7E9-45D1F36D204F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07D82F8-E5A8-49EE-A7E9-45D1F36D204F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D07D82F8-E5A8-49EE-A7E9-45D1F36D204F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
