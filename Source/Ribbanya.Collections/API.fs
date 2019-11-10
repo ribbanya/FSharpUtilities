@@ -5,10 +5,9 @@ open System
 open System.Linq
 open System.Runtime.CompilerServices
 
+[<AutoOpen>]
 module private Helper =
     let identity = Func<_, _>(fun value -> value)
-
-open Helper
 
 [<AbstractClass; Sealed; Extension; PublicAPI>]
 type CSharpExtensions private () =

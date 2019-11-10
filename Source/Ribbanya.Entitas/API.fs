@@ -11,7 +11,7 @@ type PublicMemberFilters =
     | MustWrite = 2
     | MustReadWrite = 3
 
-
+[<AutoOpen>]
 module FSharpExtensions =
     type System.Type with
         member this.GetPublicMemberInfo(?filter: PublicMemberFilters) =
