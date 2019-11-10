@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelUserStore">
+    <attachedFolders>
+      <Path>../../Csharp/Utilities/Source/Entitas</Path>
+      <Path>../../Unity/Slashball-Prototype-2</Path>
+    </attachedFolders>
+    <explicitIncludes />
+    <explicitExcludes />
+  </component>
+</project>

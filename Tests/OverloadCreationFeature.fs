@@ -16,7 +16,8 @@ type OverloadCreationFeature() =
                                                                                           defaultParameters: obj [],
                                                                                           givenParameters: obj []) =
         let mutable method: MethodInfo = null
-        "Given a method to overload".xi(fun () ->
+        "Given a method to overload".xi
+            (fun () ->
             let flags = BindingFlags.Public ||| BindingFlags.NonPublic ||| BindingFlags.Static
             method <- typeof<OverloadCreationFeature>.GetMethod(methodName, flags))
         "And a name for the overload".x_

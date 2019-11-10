@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Ribbanya.Collections", "Source\Ribbanya.Collections\Ribbanya.Collections.fsproj", "{5ABFA71C-F6F1-42B9-973C-CD2824DE97A6}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Ribbanya.Entitas", "Source\Ribbanya.Entitas\Ribbanya.Entitas.fsproj", "{EC570D9F-341A-408C-8A83-9D8D7E2EBE0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5ABFA71C-F6F1-42B9-973C-CD2824DE97A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ABFA71C-F6F1-42B9-973C-CD2824DE97A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ABFA71C-F6F1-42B9-973C-CD2824DE97A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ABFA71C-F6F1-42B9-973C-CD2824DE97A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC570D9F-341A-408C-8A83-9D8D7E2EBE0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC570D9F-341A-408C-8A83-9D8D7E2EBE0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC570D9F-341A-408C-8A83-9D8D7E2EBE0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC570D9F-341A-408C-8A83-9D8D7E2EBE0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C4F10A5-98F8-422F-967B-A5ABDB897B63}
+	EndGlobalSection
+EndGlobal

@@ -19,12 +19,12 @@ module FSharpExtensions =
 
     let SimpleTypes =
         (HashSet<Type>
-            ([|typeof<string>
-               typeof<decimal>
-               typeof<DateTime>
-               typeof<DateTimeOffset>
-               typeof<TimeSpan>
-               typeof<Guid>|]))
+            ([| typeof<string>
+                typeof<decimal>
+                typeof<DateTime>
+                typeof<DateTimeOffset>
+                typeof<TimeSpan>
+                typeof<Guid> |]))
 
     type Type with
 
@@ -43,7 +43,8 @@ module FSharpExtensions =
             if this.IsOptional then
                 if this.HasDefaultValue then this.DefaultValue
                 else this.ParameterType.DefaultValue
-            else invalidOp ("Parameter " + this.ToString() + " requires a value.")
+            else
+                invalidOp ("Parameter " + this.ToString() + " requires a value.")
 
     type MemberInfo with
         member this.GetFullName(?delimiter: string) =

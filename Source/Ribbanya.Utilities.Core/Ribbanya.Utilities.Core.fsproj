@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PackagesRoot>..\..\packages\</PackagesRoot>
+  </PropertyGroup>
+<!--  <Import Label="F# Props" Project="$(PackagesRoot)fsharp.compiler.tools\10.2.3\build\FSharp.Compiler.Tools.props" Condition="Exists('$(PackagesRoot)fsharp.compiler.tools\10.2.3\build\FSharp.Compiler.Tools.props')"/>-->
+<!--  <Import Label="Common Props" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>-->
+  <PropertyGroup>
+    <ProjectGuid>{E9FBF7F9-14E2-4A1B-B9B0-015FA58D8C2D}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup Label="Framework">
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup Label="Packages">
+    <None Include="packages.config"/>
+  </ItemGroup>
+  <ItemGroup Label="Source">
+    <Compile Include="API.fs"/>
+  </ItemGroup>
+<!--  <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />-->
+</Project>

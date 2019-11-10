@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <RootNamespace>$(AssemblyName)</RootNamespace>
+    <LangVersion>4.6</LangVersion>
+    <WarningLevel>3</WarningLevel>
+    <OtherFlags>--warnon:1182</OtherFlags>
+    <RootNamespace/>
   </PropertyGroup>
+  <PropertyGroup Label="Debug" Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+    <Tailcalls>false</Tailcalls>
+  </PropertyGroup>
+  <PropertyGroup Label="Release" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Tailcalls>true</Tailcalls>
+  </PropertyGroup>
+  <ItemGroup Label="Remove SDK Includes">
+    <Reference Remove="**"/>
+    <None Remove="**"/>
+    <Compile Remove="**"/>
+    <PackageReference Remove="**"/>
+  </ItemGroup>
+  <ItemGroup Label="Common References">
+    <PackageReference Include="Jetbrains.Annotations" Version="2019.1.3">
+      <IncludeAssets Condition="!$(DefineConstants.Contains('JETBRAINS_ANNOTATIONS'))">compile</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>
