@@ -12,8 +12,6 @@ module private Helper =
     [<Literal>]
     let memberFullNameDelimiter = "."
 
-open Helper
-
 module FSharpExtensions =
     let typeDefaults = ConcurrentDictionary<Type, obj>()
 
@@ -48,7 +46,7 @@ module FSharpExtensions =
 
     type MemberInfo with
         member this.GetFullName(?delimiter: string) =
-            let delimiter = defaultArg delimiter memberFullNameDelimiter
+            let delimiter = defaultArg delimiter Helper.memberFullNameDelimiter
             let (name, declaringType) = (this.Name, this.DeclaringType)
             match declaringType with
             | null -> name
@@ -65,7 +63,7 @@ type CSharpExtensions private () =
 
     [<Extension>]
     static member GetFullName(this: MemberInfo,
-                              [<Optional; DefaultParameterValue(memberFullNameDelimiter)>] delimiter: string) =
+                              [<Optional; DefaultParameterValue(Helper.memberFullNameDelimiter)>] delimiter: string) =
         this.GetFullName(delimiter)
 
     [<Extension>]

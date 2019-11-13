@@ -4,7 +4,7 @@ open System
 open System.Reflection.Emit
 
 module internal Helper =
-    let OperandTypeSize operandType =
+    let operandTypeSize operandType =
         match operandType with
         | OperandType.InlineNone -> 0
         | OperandType.ShortInlineI

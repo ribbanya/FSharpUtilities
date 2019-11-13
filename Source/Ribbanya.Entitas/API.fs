@@ -15,28 +15,31 @@ type PublicMemberFilters =
 [<AutoOpen>]
 module FSharpExtensions =
     type System.Type with
-        member this.GetPublicMemberInfo(?filter: PublicMemberFilters) =
+        member this.getPublicMemberInfo(?filter: PublicMemberFilters) =
             let filter = defaultArg filter PublicMemberFilters.Any
             let mustRead = filter.HasFlag PublicMemberFilters.MustRead
             let mustWrite = filter.HasFlag PublicMemberFilters.MustWrite
             let flags = BindingFlags.Instance ||| BindingFlags.Public
-            seq {
-                yield! seq {
-                           for field in this.GetFields flags do
-                               if not mustWrite || (not field.IsInitOnly && not field.IsLiteral) then
-                                   yield (PublicMemberInfo(field))
-                       }
-                yield! seq {
-                           for property in this.GetProperties flags do
-                               if property.GetIndexParameters().Length = 0
+
+            let fields =
+                let predicate (field: FieldInfo) = not mustWrite || (not field.IsInitOnly && not field.IsLiteral)
+                this.GetFields flags
+                |> Array.filter predicate
+                |> Array.map PublicMemberInfo
+                
+            let properties =
+                let predicate (property: PropertyInfo) =
+                    property.GetIndexParameters().Length = 0
                                   && (not mustRead || property.CanRead && property.GetGetMethod() <> null)
-                                  && (not mustWrite || property.CanWrite && property.GetSetMethod() <> null) then
-                                   yield (PublicMemberInfo(property))
-                       }
-            }
+                                  && (not mustWrite || property.CanWrite && property.GetSetMethod() <> null)
+                this.GetProperties flags
+                |> Array.filter predicate
+                |> Array.map PublicMemberInfo
+                
+            fields |> Array.append properties
 
     type Entitas.IContext with
         member this.entities =
             match this.GetType().GetMethod("GetEntities", BindingFlags.Public ||| BindingFlags.Instance) with
-            | null -> raise (MethodAccessException())
-            | _ as mi -> mi.Invoke(this, null) :?> IEntity[]
+            | null -> MethodAccessException() |> Error
+            | _ as mi -> mi.Invoke(this, null) :?> IEntity[] |> Ok

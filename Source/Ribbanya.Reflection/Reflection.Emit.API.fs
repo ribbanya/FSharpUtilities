@@ -1,15 +1,12 @@
 namespace Ribbanya.Reflection.Emit
 
 open JetBrains.Annotations
-open System
 open System.Reflection
 open System.Reflection.Emit
-open System.Runtime.CompilerServices
 open Types
 
-//TODO: How is this allowed???
 module private Helper =
-    let Emit (generator: ILGenerator) (instruction: Instruction) =
+    let emit (generator: ILGenerator) (instruction: Instruction) =
         let opCode = instruction.OpCode
         match instruction.Operand with
         | I1 operand -> generator.Emit(opCode, operand)
@@ -30,50 +27,50 @@ module private Helper =
         | Local operand -> generator.Emit(opCode, operand)
         | None -> generator.Emit(opCode)
 
-open Helper
-
+[<PublicAPI>]
 module FSharpExtensions =
     type Emit.OperandType with
-        member this.Size = OperandTypeSize this
+        member this.Size = Helper.operandTypeSize this
 
     type OpCode with
         member this.TotalSize = this.Size + this.OperandType.Size
 
     type ILGenerator with
-        member this.Emit instruction = Emit this instruction
+        member this.Emit instruction = Helper.emit this instruction
 
-open FSharpExtensions
+//open FSharpExtensions
 
-[<AbstractClass; Sealed; Extension; PublicAPI>]
-type CSharpExtensions private () =
-
-    [<Extension>]
-    static member GetSize(this: Emit.OperandType) = this.Size
-
-    [<Extension>]
-    static member GetTotalSize(this: Emit.OpCode) = this.TotalSize
-
-    [<Extension>]
-    static member Emit this instruction = Emit this instruction
-
-    [<Extension>]
-    static member CreateOverload(this, overloadName, defaultParameters, startOffset): 'TDelegate :> Delegate =
-        raise (NotImplementedException())
-
-    //TODO: Validate unspecifiedParameterTypes against Invoke
-    //    let (paddedParameters, unspecifiedParameterTypes) = arrangeParameters (this, defaultParameters, startOffset)
-    //    let overload = createOverload (this, overloadName, paddedParameters, x unspecifiedParameterTypes)
-    //    unbox<'TDelegate> (overload.CreateDelegate(typeof<'TDelegate>))
-    [<Extension>]
-    static member CreateOverload(this, overloadName, defaultParameters, startOffset): Delegate =
-        raise (NotImplementedException())
-
-    //    TODO: Validate parameters
-    //    let (paddedParameters, unspecifiedParameterTypes) = arrangeParameters (this, defaultParameters, startOffset)
-    //    let overload = createOverload (this, overloadName, paddedParameters, unspecifiedParameterTypes)
-    //    overload.CreateDelegate(typeof<'TDelegate>)
-    [<Extension>]
-    static member CreateOverload(this, overloadName, defaultParameters) = raise (NotImplementedException())
+// TODO
+//[<AbstractClass; Sealed; Extension; PublicAPI>]
+//type CSharpExtensions private () =
+//
+//    [<Extension>]
+//    static member GetSize(this: Emit.OperandType) = this.Size
+//
+//    [<Extension>]
+//    static member GetTotalSize(this: Emit.OpCode) = this.TotalSize
+//
+//    [<Extension>]
+//    static member Emit this instruction = Helper.emit this instruction
+//
+//    [<Extension>]
+//    static member CreateOverload(this, overloadName, defaultParameters, startOffset): 'TDelegate :> Delegate =
+//        raise (NotImplementedException())
+//
+//    //TODO: Validate unspecifiedParameterTypes against Invoke
+//    //    let (paddedParameters, unspecifiedParameterTypes) = arrangeParameters (this, defaultParameters, startOffset)
+//    //    let overload = createOverload (this, overloadName, paddedParameters, x unspecifiedParameterTypes)
+//    //    unbox<'TDelegate> (overload.CreateDelegate(typeof<'TDelegate>))
+//    [<Extension>]
+//    static member CreateOverload(this, overloadName, defaultParameters, startOffset): Delegate =
+//        raise (NotImplementedException())
+//
+//    //    TODO: Validate parameters
+//    //    let (paddedParameters, unspecifiedParameterTypes) = arrangeParameters (this, defaultParameters, startOffset)
+//    //    let overload = createOverload (this, overloadName, paddedParameters, unspecifiedParameterTypes)
+//    //    overload.CreateDelegate(typeof<'TDelegate>)
+//    [<Extension>]
+//    static member CreateOverload(this, overloadName, defaultParameters) = raise (NotImplementedException())
 //    TODO: Validate parameters
 //    let (paddedParameters, unspecifiedParameterTypes) = arrangeParameters (this, defaultParameters, startOffset)
 //    let overload = createOverload (this, overloadName, paddedParameters, unspecifiedParameterTypes)

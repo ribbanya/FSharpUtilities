@@ -44,13 +44,12 @@ module Types =
             | Local _ -> raise (NotImplementedException())
             | None _ -> OperandType.InlineNone
 
-        member this.Size = Helper.OperandTypeSize this.OperandType
+        member this.Size = Helper.operandTypeSize this.OperandType
 
     type Instruction =
         {OpCode: OpCode
          Operand: Operand}
-        member this.Size = this.OpCode.Size + Helper.OperandTypeSize this.Operand.OperandType
-        static member unbox type' value =
+        member this.Size = this.OpCode.Size + Helper.operandTypeSize this.Operand.OperandType
             
 
     type ShortMacroInstructionType =

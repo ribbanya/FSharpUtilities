@@ -17,29 +17,10 @@ module Seq =
         let rec loop index =
             let current = enum.Current
             if not (enum.MoveNext()) then
-                raise (ArgumentException("Item was not found."))
-            else if predicate current then (index, current)
+                ArgumentException "Item was not found." |> Error
+            else if predicate current then Ok (index, current)
             else loop (index + 1)
         loop 0
-    
-    let tryFindWithIndex predicate (source: seq<_>) =
-        let enum = source.GetEnumerator()
-        let rec loop index =
-            let current = enum.Current
-            if not (enum.MoveNext()) then None
-            else if predicate current then Some (index, current)
-            else loop (index + 1)
-        loop 0
-
-[<RequireQualifiedAccess>]
-module List =
-    let findWithIndex predicate source = Seq.ofList source |> Seq.findWithIndex predicate
-    let tryFindWithIndex predicate source = Seq.ofList source |> Seq.tryFindWithIndex predicate
-    
-[<RequireQualifiedAccess>]
-module Array =
-    let findWithIndex predicate source = Seq.ofArray source |> Seq.findWithIndex predicate    
-    let tryFindWithIndex predicate source = Seq.ofArray source |> Seq.tryFindWithIndex predicate    
 
 [<AbstractClass; Sealed; Extension; PublicAPI>]
 type CSharpExtensions private () =
