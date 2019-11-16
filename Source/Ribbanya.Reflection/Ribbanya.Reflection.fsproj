@@ -9,7 +9,7 @@
     <Reference Label="Framework" Include="System; System.Core" />
   </ItemGroup>
   <ItemGroup Label="Source">
-    <Compile Include="Reflection.Emit.Helper.fs" />
+    <Compile Include="Reflection.Emit.EmitHelper.fs" />
     <Compile Include="Reflection.Emit.Types.fs" />
     <Compile Include="Reflection.API.fs" />
     <Compile Include="Reflection.Emit.API.fs" />

@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"/>
-  <Import Project="$(NuGetPackageRoot)fsharp.compiler.tools\10.0.2\build\FSharp.Compiler.Tools.props"/>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{E0EB6824-A4A9-4D50-B3A2-789B2F092846}</ProjectGuid>
   </PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>
-    <ProjectReference Include="$(Root)Source\Ribbanya.Utilities.fsproj">
-      <Name>Ribbanya.Utilities</Name>
-    </ProjectReference>
-    <PackageReference Include="FSharp.Core" Version="4.7.0"/>
-    <PackageReference Include="FSharp.Compiler.Tools" Version="10.2.3"/>
-    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3"/>
-    <PackageReference Include="FluentAssertions" Version="5.9.0"/>
-    <PackageReference Include="xunit" Version="2.4.1"/>
-    <PackageReference Include="FsCheck.Xunit" Version="2.14.0"/>
-    <PackageReference Include="FsUnit.xUnit" Version="3.7.0"/>
-    <PackageReference Include="Xbehave" Version="2.4.1"/>
+    <PackageReference Include="FSharp.Core" Version="4.7.0" />
+    <PackageReference Include="FluentAssertions" Version="5.9.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="Xbehave" Version="2.4.1" />
+    <Reference Label="Precompiled" Include="System.Core"/>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OverloadCreationFeature.fs"/>
-    <Compile Include="FsCheckSamples.fs"/>
+    <Compile Include="ExpressionsTests.fs" />
   </ItemGroup>
-  <Import Project="$(FSharpTargetsPath)"/>
 </Project>

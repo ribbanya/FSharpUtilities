@@ -1,3 +1,4 @@
+(*
 namespace Ribbanya.Reflection.Emit
 
 open JetBrains.Annotations
@@ -27,10 +28,10 @@ module private Helper =
         | Local operand -> generator.Emit(opCode, operand)
         | None -> generator.Emit(opCode)
 
-[<PublicAPI>]
+[<AutoOpen; PublicAPI>]
 module FSharpExtensions =
     type Emit.OperandType with
-        member this.Size = Helper.operandTypeSize this
+        member this.Size = EmitHelper.operandTypeSize this
 
     type OpCode with
         member this.TotalSize = this.Size + this.OperandType.Size
@@ -77,3 +78,4 @@ module FSharpExtensions =
 //    overload.CreateDelegate(typeof<'TDelegate>)
 //  static member CreateOverload(this: MethodInfo, overloadName: string, defaultParameters: obj [], startOffset: int): Delegate =
 //    raise (NotImplementedException())
+*)

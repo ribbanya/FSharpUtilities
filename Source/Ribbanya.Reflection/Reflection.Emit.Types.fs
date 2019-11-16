@@ -1,9 +1,13 @@
+(*
 namespace Ribbanya.Reflection.Emit
 
 open System
+open System
 open System.Reflection
 open System.Reflection.Emit
+open System.Reflection.Emit
 
+[<AutoOpen>]
 module Types =
     type Operand =
         | I1 of sbyte
@@ -23,7 +27,7 @@ module Types =
         | Signature of SignatureHelper
         | Local of LocalBuilder
         | None
-
+        
         member this.OperandType =
             match this with
             | I1 _ -> OperandType.ShortInlineI
@@ -44,13 +48,49 @@ module Types =
             | Local _ -> raise (NotImplementedException())
             | None _ -> OperandType.InlineNone
 
-        member this.Size = Helper.operandTypeSize this.OperandType
+        member this.Size = EmitHelper.operandTypeSize this.OperandType
 
     type Instruction =
         {OpCode: OpCode
          Operand: Operand}
-        member this.Size = this.OpCode.Size + Helper.operandTypeSize this.Operand.OperandType
+        member this.Size = this.OpCode.Size + EmitHelper.operandTypeSize this.Operand.OperandType
+//        static member private tryType value type' opCode operandConverter else' a b c =
+//            if type' = typeof<'TypeToTry> then
+//                {OpCode = opCode; Operand = value |> unbox<'TypeToTry> |> operandConverter}
+//            else (else'<'OtherType> value type' a b c)
             
+    
+    type private InstructionBuilder() =
+        member __.Return(opCode, operandConverter) = ignore
+        [<CustomOperation("tryType")>]
+        member __.TryType(value: obj, type': Type) = 
+        
+        
+    let private instruction = InstructionBuilder()
+    
+    let Ld (value: obj) (type': Type) =
+        instruction {
+            (value, type')
+            (OpCodes.Ldc_I4, (fun (value: int16) -> value |> int|> I4))
+        }
+            
+//            let ifelse condition if' else' = if condition then if' else else'
+//            let opCode, operand =
+//            Instruction.tryType<int16> value type' OpCodes.Ldc_I4 (int >> I4)
+//            let dummy = Unchecked.defaultof<Instruction>
+//            let dumdum() = dummy
+//            let expr =
+//                Instruction.tryType<int16> value type' OpCodes.Ldc_I4 (int >> I4)
+//                <
+//            let int16 = Instruction.tryType<int16> dumdum OpCodes.Ldc_I4 (int >> I4)
+//            let int32 = Instruction.tryType<int32> int16 OpCodes.Ldc_I4 I4
+//            int32 value type'
+//            <| raise (NotImplementedException())
+//                if type' = typeof<bool> then
+//                    (if unbox<bool> value then OpCodes.Ldc_I4_1 else OpCodes.Ldc_I4_0), None
+//                elif type' = typeof<byte> then OpCodes.Ldc_I4_S, value |> unbox<byte> |> int |> I4
+//                elif type' = typeof<int16> then OpCodes.Ldc_I4, value |> unbox<int16> |> int |> I4
+//                else raise (NotImplementedException())
 
     type ShortMacroInstructionType =
         | Ldarg_S
@@ -106,3 +146,4 @@ module Types =
         | ParameterDefault
         | TypeDefault
         | ParameterOrTypeDefault
+*)

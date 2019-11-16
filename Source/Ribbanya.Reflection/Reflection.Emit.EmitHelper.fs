@@ -3,7 +3,7 @@ namespace Ribbanya.Reflection.Emit
 open System
 open System.Reflection.Emit
 
-module internal Helper =
+module internal EmitHelper =
     let operandTypeSize operandType =
         match operandType with
         | OperandType.InlineNone -> 0
