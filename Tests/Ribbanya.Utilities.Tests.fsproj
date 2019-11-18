@@ -10,7 +10,7 @@
     <PackageReference Include="FluentAssertions" Version="5.9.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="Xbehave" Version="2.4.1" />
-    <Reference Label="Precompiled" Include="System.Core"/>
+    <Reference Label="Precompiled" Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExpressionsTests.fs" />

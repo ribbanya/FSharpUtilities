@@ -1,6 +1,6 @@
-(*
-namespace Ribbanya.Reflection.Emit
 
+namespace Ribbanya.Reflection.Emit
+(*
 open System
 open System
 open System.Reflection

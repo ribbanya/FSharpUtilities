@@ -12,6 +12,7 @@ module private Helper =
     [<Literal>]
     let memberFullNameDelimiter = "."
 
+[<AutoOpen>]
 module FSharpExtensions =
     let typeDefaults = ConcurrentDictionary<Type, obj>()
 
@@ -39,10 +40,9 @@ module FSharpExtensions =
         member this.IsCSharpOptional = this.IsOptional && this.HasDefaultValue
         member this.CSharpDefaultValue =
             if this.IsOptional then
-                if this.HasDefaultValue then this.DefaultValue
-                else this.ParameterType.DefaultValue
-            else
-                invalidOp ("Parameter " + this.ToString() + " requires a value.")
+                if this.HasDefaultValue then Some this.DefaultValue
+                else Some this.ParameterType.DefaultValue
+            else None
 
     type MemberInfo with
         member this.GetFullName(?delimiter: string) =
@@ -73,7 +73,10 @@ type CSharpExtensions private () =
     static member IsActuallyOptional(this: ParameterInfo) = this.IsCSharpOptional
 
     [<Extension>]
-    static member GetActualDefaultValue(this: ParameterInfo) = this.CSharpDefaultValue
+    static member GetActualDefaultValue(this: ParameterInfo) =
+        match this.CSharpDefaultValue with
+        | Some default' -> default'
+        | None -> this.ToString() |> sprintf "Parameter %s requires a value." |> invalidOp
 
     [<Extension>]
     static member IsSimple(this: Type) = this.IsSimple

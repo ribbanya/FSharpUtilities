@@ -1,6 +1,6 @@
-(*
-namespace Ribbanya.Reflection.Emit
 
+namespace Ribbanya.Reflection.Emit
+(*
 open JetBrains.Annotations
 open System.Reflection
 open System.Reflection.Emit
