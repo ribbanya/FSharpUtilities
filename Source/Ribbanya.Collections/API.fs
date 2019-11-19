@@ -8,7 +8,7 @@ open JetBrains.Annotations
 
 [<AutoOpen>]
 module private Helper =
-    let identity = Func<_, _>(fun value -> value)
+    let identity = Func<_, _>(id)
 
 [<RequireQualifiedAccess>]
 module Seq =
