@@ -6,14 +6,7 @@
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup Label="Precompiled">
-    <Reference Include="DesperateDevs.Utils">
-      <HintPath>$(DependenciesRoot)DesperateDevs\DesperateDevs.Utils.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="Entitas">
-      <HintPath>$(DependenciesRoot)Entitas\Entitas.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
+    <PackageReference Include="Entitas" Version="1.13.0"/>
   </ItemGroup>
   <ItemGroup Label="Source">
     <Compile Include="API.fs" />
