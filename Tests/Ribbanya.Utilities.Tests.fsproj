@@ -3,6 +3,15 @@
   <PropertyGroup>
     <ProjectGuid>{E0EB6824-A4A9-4D50-B3A2-789B2F092846}</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Headless|AnyCPU' ">
+    <OutputPath>bin\Headless\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnityRelease|AnyCPU' ">
+    <OutputPath>bin\UnityRelease\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnityDebug|AnyCPU' ">
+    <OutputPath>bin\UnityDebug\</OutputPath>
+  </PropertyGroup>
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

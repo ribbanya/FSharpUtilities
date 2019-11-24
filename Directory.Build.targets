@@ -3,15 +3,21 @@
   <PropertyGroup>
     <LangVersion>4.6</LangVersion>
     <WarningLevel>3</WarningLevel>
+    <Deterministic>true</Deterministic>
     <OtherFlags>--warnon:1182</OtherFlags>
     <RootNamespace/>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
   <PropertyGroup Label="Debug" Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
     <DebugType>portable</DebugType>
     <Tailcalls>false</Tailcalls>
   </PropertyGroup>
   <PropertyGroup Label="Release" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
     <Tailcalls>true</Tailcalls>
+    <OtherFlags>$(OtherFlags) --debug-</OtherFlags>
   </PropertyGroup>
   <ItemGroup Label="Remove SDK Includes">
     <Reference Remove="**"/>

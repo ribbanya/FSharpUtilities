@@ -6,7 +6,7 @@
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup Label="Precompiled">
-    <Reference Label="Framework" Include="System.Core"/>
+    <Reference Label="Framework" Include="System.Core" />
   </ItemGroup>
   <ItemGroup Label="Source">
     <Compile Include="API.fs" />
