@@ -1,9 +1,9 @@
 namespace Ribbanya.Collections
 
-open System
-open System.Runtime.CompilerServices
-open System.Linq
 open JetBrains.Annotations
+open System
+open System.Linq
+open System.Runtime.CompilerServices
 
 
 [<AutoOpen>]
@@ -14,13 +14,31 @@ module private Helper =
 module Seq =
     let findWithIndex predicate (source: seq<_>) =
         let enum = source.GetEnumerator()
+
         let rec loop index =
             let current = enum.Current
-            if not (enum.MoveNext()) then
-                ArgumentException "Item was not found." |> Error
-            else if predicate current then Ok (index, current)
+            if not (enum.MoveNext()) then ArgumentException "Item was not found." |> Error
+            else if predicate current then Ok(index, current)
             else loop (index + 1)
         loop 0
+
+[<RequireQualifiedAccess>]
+module Queue =
+
+    let empty<'a> : 'a list * 'a list = ([], [])
+
+    let isEmpty =
+        function
+        | ([], []) -> true
+        | _ -> false
+
+    let enqueue x (push, pop) = (pop, x :: push)
+
+    let rec dequeue =
+        function
+        | ([], []) -> (None, empty)
+        | (x :: xs, push) -> (Some x, (xs, push))
+        | ([], push) -> dequeue (List.rev push, [])
 
 [<AbstractClass; Sealed; Extension; PublicAPI>]
 type CSharpExtensions private () =
